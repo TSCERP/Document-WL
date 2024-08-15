@@ -1,4 +1,5 @@
-# "USPWEB_STOCK_BATCHSERIAL"
+# `USPWEB_STOCK_BATCHSERIAL`
+```SQL
 CREATE or replace VIEW "USPWEB_STOCK_BATCHSERIAL" ( "ItemCode",
 	 "ItemName",
 	 "WhsCode",
@@ -39,8 +40,11 @@ CREATE or replace VIEW "USPWEB_STOCK_BATCHSERIAL" ( "ItemCode",
 	 'S' "Type" 
 			from OSRI 
 			where "Status"=0 
-			order by "SysSerial" asc) a)) ;
+			order by "SysSerial" asc) a)
+);
+```		
 # "UV_DETAILGHINHANSL" 
+```SQL
 CREATE or replace VIEW "UV_DETAILGHINHANSL" ( "LSX",
 	 "DocEntry",
 	 "ItemChild",
@@ -104,7 +108,9 @@ from (select
 	AND a."U_LLSX"='CBG' 
 	and a."Status"='R') a 
 where ( a."SanLuong" - "DaLam" +"Loi")>0 ;
+```
 # "UV_DETAILGHINHANSL_VCN"
+```SQL
 CREATE or replace VIEW "UV_DETAILGHINHANSL_VCN" ( "LSX",
 	 "ProType",
 	 "Version",
@@ -176,7 +182,9 @@ from (select
 	AND a."U_LLSX"='VCN' 
 	and a."Status"='R') a 
 where ( a."SanLuong" - "DaLam" -"Loi")>0 ;
+```
 # "UV_GHINHANSL"
+``` SQL
 CREATE or replace VIEW "UV_GHINHANSL" ( "LSX",
 	 "ItemChild",
 	 "ChildName",
@@ -251,7 +259,9 @@ from (select
 	and a."U_LLSX"='CBG' 
 	and a."Status"='R') a 
 where (a."SanLuong" - "DaLam" +"Loi") >0 ;
+```
 # "UV_GHINHANSLVCN"
+```SQL
 CREATE or replace VIEW "UV_GHINHANSLVCN" ( "LSX",
 	 "ProType",
 	 "Version",
@@ -418,7 +428,9 @@ CREATE or replace VIEW "UV_GHINHANSLVCN" ( "LSX",
 			and b."BaseQty" <0 
 			and B."PlannedQty"<b."IssuedQty" 
 			and b."ItemType"='4') a));
-# "UV_OHEM"         
+```
+# "UV_OHEM"    
+```SQL     
 CREATE or replace VIEW "UV_OHEM" ( "USER_CODE",
 	 "NAME" ) AS select
 	 "empID" USER_CODE,
@@ -517,7 +529,9 @@ LEFT JOIN ( SELECT
 	 T10."SubItemCode",
 	 T10."SubItemName" ) T41 ON T40."U_To" = T41."U_To" 
 AND T40."SubItemCode" = T41."SubItemCode";
+```
 # "UV_SOLUONGTONVCN"
+``` SQL
 CREATE or replace VIEW "UV_SOLUONGTONVCN" ( "U_GRID",
 	 "U_To",
 	 "U_Next",
@@ -628,7 +642,9 @@ LEFT JOIN ( SELECT
 	 T10."SubItemCode",
 	 T10."SubItemName" ) T41 ON T40."U_To" = T41."U_To" 
 AND T40."SubItemCode" = T41."SubItemCode" ;
+```
 # "UV_WEB_QUYCACHTPRONG"
+``` SQL
 CREATE VIEW "UV_WEB_QUYCACHTPRONG" ( "DocEntry",
 	 "QuyCach" ) AS SELECT
 	 a."DocEntry",
@@ -643,7 +659,9 @@ and b."BaseQty"<0 join (select
 	 '0') "QuyCach" 
 	from OITM ) c ON b."ItemCode"=c."ItemCode" 
 GROUP BY a."DocEntry";
+```
 # V_WEBONHANDBYTO
+``` SQL
 CREATE or replace VIEW "V_WEBONHANDBYTO" ( "U_GRID",
 	 "U_To",
 	 "U_Next",
@@ -713,4 +731,5 @@ Left Join ( Select
 		And T01."BaseType" = 202 )T10 
 	Group By T10."U_To",
 	 T10."ItemCode" )T41 on T40."U_To" = T41."U_To" 
-And T40."ItemCode" = T41."ItemCode" WITH READ ONLY
+And T40."ItemCode" = T41."ItemCode";
+```

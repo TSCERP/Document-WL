@@ -1,4 +1,5 @@
 # "UF_UpdateOrCreateLogQC"
+```SQL
 create procedure "UF_UpdateOrCreateLogQC"( in type nvarchar(10),
 IN Code nvarchar(254), 
 in ItemCode nvarchar(254),
@@ -39,7 +40,9 @@ AS BEGIN
 	
 
 END;
+```
 # "USP_AllocateIssue"
+```SQL
 CREATE procedure "USP_AllocateIssue" (IN ItemCode NVARCHAR(5000),
     IN WhsCode NVARCHAR(5000),
     IN Qty FLOAT,
@@ -59,7 +62,9 @@ begin
 		select * from U_Allocate_Batch_Serial(ItemCode,WhsCode,Qty,:type);
 	end if;
 end;
+```
 # "USP_ChiTietSLVCN_RONG" 
+```SQL
 CREATE procedure "USP_ChiTietSLVCN_RONG" 
 (IN Item nvarchar(255),TO nvarchar(255) ,version nvarchar(255))
 as
@@ -90,7 +95,9 @@ group by tf."ItemCode",Tf."ItemName",t1."ItemCode",t0."U_CDOAN",t5."ItemName",t0
 T5."U_CDai",T5."U_CRong" ,T5."U_CDay"
 having sum(t1."PlannedQty"*-1)- SUM(ifnull(T3."Quantity",0))- SUM(ifnull(T4."Quantity",0)) >0) T0;
 END;
+```
 # usp_issueAutoData
+```SQL
 CREATE PROCEDURE usp_issueAutoData (IN inputString NVARCHAR(5000)) 
 LANGUAGE SQLSCRIPT 
 AS 
@@ -183,7 +190,9 @@ BEGIN
 drop table "#resultTable";
     -- Temporary tables are automatically dropped at the end of the session
 END;
+```
 # usp_issueAutoData_v2
+```SQL
 CREATE PROCEDURE usp_issueAutoData_v2 (IN inputString NVARCHAR(5000)) 
 LANGUAGE SQLSCRIPT 
 AS 
@@ -414,7 +423,9 @@ create local temporary table #Stock(
 	drop table #data;
     -- Temporary tables are automatically dropped at the end of the session
 END;
+```
 # usp_webOpenProductionOrder
+```SQL
 CREATE procedure usp_webOpenProductionOrder( in ItemCode nvarchar(254),in Team nvarchar(200),in ver int)
  as 
  begin 
@@ -542,7 +553,9 @@ create local temporary table #Stock(
      DROP TABLE  #Stock;
      DROP TABLE #runingtemp;
 END;
+```
 # "usp_web_detailrong"
+```SQL
 CREATE procedure "usp_web_detailrong" (
 in sp nvarchar(254),
 in item nvarchar(254),
@@ -565,7 +578,9 @@ and B."PlannedQty"<b."IssuedQty"
 where a."U_SPDICH"=sp and a."U_Version"=ver and b."ItemCode"=item and a."U_To"=to
 order by a."DocEntry" asc;
 end;
+```
 # usp_web_issueAutoData
+```SQL
 CREATE PROCEDURE usp_web_issueAutoData (IN inputString NVARCHAR(5000)) 
 LANGUAGE SQLSCRIPT 
 AS 
@@ -797,7 +812,9 @@ create local temporary table #Stock(
 	drop table #data;
     -- Temporary tables are automatically dropped at the end of the session
 END;
+```
 # UV_WEB_StockRong
+```SQL
 CREATE PROCEDURE UV_WEB_StockRong (in ItemCode nvarchar(254))
 as
 begin
@@ -815,5 +832,5 @@ and a."Status"='R'
 where  b."ItemCode"=ItemCode) a
 join OITW C ON a."ItemCode"=c."ItemCode" and c."WhsCode"=a."wareHouse"
 GROUP BY A."ItemCode";
-
 end
+```

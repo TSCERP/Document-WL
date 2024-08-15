@@ -1,3 +1,5 @@
+# FUNCTION 
+```SQL
 CREATE OR REPLACE FUNCTION "Uf_AllocateIssue" (
     IN ItemCode NVARCHAR(5000),
     IN WhsCode NVARCHAR(5000),
@@ -26,7 +28,6 @@ BEGIN
         FROM U_Allocate_Batch_Serial(:ItemCode, :WhsCode, :Qty, :Type);
     END IF;
 END;
-
 CREATE OR Replace FUNCTION "Uf_CheckStockByWhsCode_ManBy"(
     IN ItemCode NVARCHAR(5000),
     IN WhsCode NVARCHAR(5000)
@@ -99,3 +100,4 @@ where "ItemCode"=ItemCode and "Status"=0 and "WhsCode"=WhsCode and
 order by "SysSerial" asc;
 end if;
 END;
+```
